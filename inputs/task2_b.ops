@@ -1,0 +1,15 @@
+# task2_b.ops
+
+# Define a filter for counties where Bachelor's Degree or Higher completion is > 40%
+filter_bachelor_above_40 = filter(
+    (county) => county.education["Bachelor's Degree or Higher"] > 40
+)
+
+# For the filtered counties, compute the percentage of the population below the poverty level
+compute_poverty_percentage = map(
+    filter_bachelor_above_40,
+    (county) => county.income['Persons Below Poverty Level']
+)
+
+# Output the result
+output(compute_poverty_percentage)

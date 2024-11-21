@@ -1,0 +1,15 @@
+# task2_a.ops
+
+# Define a filter for counties where High School or Higher completion is < 80%
+filter_high_school_below_80 = filter(
+    (county) => county.education['High School or Higher'] < 80
+)
+
+# For the filtered counties, compute the percentage of the population below the poverty level
+compute_poverty_percentage = map(
+    filter_high_school_below_80,
+    (county) => county.income['Persons Below Poverty Level']
+)
+
+# Output the result
+output(compute_poverty_percentage)
