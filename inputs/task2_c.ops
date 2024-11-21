@@ -1,0 +1,15 @@
+# task2_c.ops
+
+# Define a filter for counties where the selected ethnicity percentage is greater than 40%
+filter_ethnicity_above_40 = filter(
+    (county) => county.ethnicities['Hispanic or Latino'] > 40
+)
+
+# For the filtered counties, compute the percentage of the population below the poverty level
+compute_poverty_percentage = map(
+    filter_ethnicity_above_40,
+    (county) => county.income['Persons Below Poverty Level']
+)
+
+# Output the result
+output(compute_poverty_percentage)
